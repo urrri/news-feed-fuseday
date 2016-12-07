@@ -13,13 +13,13 @@ getOnce() {
      });
  }
 
-getOn() {
+getOn(cb) {
    var count = 0;
-   return firebase.database().ref('/stream')
+   firebase.database().ref('/stream')
      .on('child_added', function(snapshot) {
        console.log(++count,snapshot.val());
-       return snapshot;
-     });
+       cb(snapshot.val());
+     })
  }
 
 }

@@ -3,10 +3,10 @@ import fbApi from './fbApi';
 
 class AppState {
   @observable timer = 0;
-
+  @observable feed = [];
   constructor() {
     // const res = fbApi.getOnce();
-    const res = fbApi.getOn();
+    fbApi.getOn(item => this. feed.push(item));
     setInterval(() => {
       this.timer += 1;
     }, 1000);
