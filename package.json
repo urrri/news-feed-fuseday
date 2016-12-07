@@ -39,6 +39,7 @@
   },
   "dependencies": {
     "firebase": "^3.6.3",
+    "lodash": "^4.17.2",
     "material-ui": "^0.16.4",
     "mobx": "^2.2.2",
     "mobx-react": "^3.3.1",

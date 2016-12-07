@@ -1,20 +1,26 @@
-import { observable } from 'mobx';
+import {observable} from 'mobx';
+import _ from 'lodash';
 import fbApi from './fbApi';
 
 class AppState {
-  @observable timer = 0;
-  @observable feed = [];
-  constructor() {
-    // const res = fbApi.getOnce();
-    fbApi.getOn(item => this. feed.push(item));
-    setInterval(() => {
-      this.timer += 1;
-    }, 1000);
-  }
+    @observable trigger = 0;
+    feed = [];
 
-  resetTimer() {
-    this.timer = 0;
-  }
+    constructor() {
+        const addItem = (item) => {
+            while(this.feed.length > 100) this.feed.shift();
+            this.feed.push(item);
+            this.trigger++;
+            // this.feed[0] = item;
+            console.log(this.feed.length);
+        };
+
+        fbApi.getOnce().then(feed => {
+            _.forEach(feed, addItem);
+            this.trigger++;
+            fbApi.getOn(addItem);
+        });
+    }
 }
 
 export default AppState;
