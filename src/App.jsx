@@ -4,6 +4,7 @@ import DevTools from 'mobx-react-devtools';
 
 @observer
 class App extends Component {
+
   render() {
     return (
       <div>
