@@ -7,10 +7,12 @@ class AppState {
     feed = [];
 
     constructor() {
+        const updateTrigger = _.debounce(() => this.trigger++, 10);
+
         const addItem = (item) => {
             while(this.feed.length > 100) this.feed.shift();
             this.feed.push(item);
-            this.trigger++;
+            updateTrigger();
             // this.feed[0] = item;
             console.log(this.feed.length);
         };

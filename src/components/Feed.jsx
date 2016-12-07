@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import {observer} from 'mobx-react';
 import {List, ListItem} from 'material-ui/List';
+import Avatar from 'material-ui/Avatar';
 
 
 @observer
@@ -17,15 +18,12 @@ export default class Feed extends Component {
                 <List>
                     {appState.feed.map(item => {
                         return (
-                            <div key={item.uuid} className="item">
-                                <ListItem
+                                <ListItem key={item.uuid}
                                     primaryText={item.title}
                                     secondaryText={`by ${item.author}`}
-                                    leftAvatar={item.thread.main_image}
+                                    leftAvatar={<Avatar src={item.thread.main_image} />}
                                 >
                                 </ListItem>
-
-                            </div>
                         )
                     })}
                 </List>

@@ -1,4 +1,5 @@
 import { config } from './fb-config';
+import * as firebase from 'firebase';
 
 class FbApi {
   constructor(){
@@ -6,7 +7,10 @@ class FbApi {
   }
 
 getOnce() {
-   return firebase.database().ref('/stream_2').orderByChild('page').once('value')
+   return firebase.database()
+       .ref('/stream_2').orderByChild('page')
+       .limitToLast(100)
+       .once('value')
      .then(function(snapshot) {
        // console.log("once",snapshot.val());
        return snapshot.val();
