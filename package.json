@@ -39,11 +39,13 @@
   },
   "dependencies": {
     "firebase": "^3.6.3",
+    "material-ui": "^0.16.4",
     "mobx": "^2.2.2",
     "mobx-react": "^3.3.1",
     "mobx-react-devtools": "^4.2.0",
     "react": "^15.4.1",
     "react-dom": "^15.1.0",
+    "react-tap-event-plugin": "^2.0.1",
     "reactfire": "^1.0.0"
   }
 }
