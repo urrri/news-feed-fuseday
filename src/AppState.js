@@ -1,10 +1,34 @@
-import {observable} from 'mobx';
+import {observable, computed} from 'mobx';
 import _ from 'lodash';
 import fbApi from './fbApi';
 
 class AppState {
     @observable trigger = 0;
     feed = [];
+
+    @observable view = 'summary';
+
+    toFeed(){
+        this.view = 'feed';
+    }
+
+    toArticle(){
+        this.view = 'article';
+    }
+    toSummary(){
+        this.view = 'summary';
+    }
+
+    @computed get selectedViewIndex(){
+        switch(this.view){
+            case 'summary': return 0;
+            case 'feed': return 1;
+            case 'article': return 2;
+
+        }
+    }
+
+    @observable article = {};
 
     constructor() {
         const updateTrigger = _.debounce(() => this.trigger++, 10);

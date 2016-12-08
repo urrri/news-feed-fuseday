@@ -14,7 +14,7 @@ export default class Feed extends Component {
         const {appState} = this.props;
         return (
             <div>
-                <div className="feed">{appState.trigger}</div>
+                <div style={{display:'none'}}>{appState.trigger}</div>
                 <List>
                     {appState.feed.map(item => {
                         return (
@@ -22,6 +22,7 @@ export default class Feed extends Component {
                                     primaryText={item.title}
                                     secondaryText={`by ${item.author}`}
                                     leftAvatar={<Avatar src={item.thread.main_image} />}
+                                          onTouchTap={() => {appState.article = item; appState.toArticle()}}
                                 >
                                 </ListItem>
                         )
